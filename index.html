@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quit Vaping Journey</title>
+  <meta name="description" content="Track your quit vaping progress. See milestones, health benefits, and savings!" />
+  <meta property="og:title" content="Quit Vaping Journey" />
+  <meta property="og:description" content="Track how long you've been vape-free, the benefits, and your savings." />
+  <meta property="og:image" content="https://vape/itzgee.com/assets/vape-quit-preview.png" />
+  <meta property="og:url" content="https://vape.itzgee.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Google Analytics (replace 'G-XXXXXXX' with your ID) -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KTZSTVJET4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-KTZSTVJET4');
+  </script>
+  -->
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #2b5876, #4e4376);
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 1rem;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    header h1 {
+      font-size: 3rem;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .milestones {
+      background: #ffffff11;
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 1.5rem auto 0;
+      text-align: center;
+      max-width: 600px;
+      font-size: 1.8rem;
+      box-shadow: 0 0 15px #00000044;
+      animation: fadeInUp 1s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .milestone-block {
+      background: #ffffff22;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      min-width: 100px;
+      font-weight: bold;
+      aria-live: polite;
+    }
+
+    .section {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      animation: fadeInUp 1s ease-in;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .section ul {
+      list-style: none;
+    }
+
+    .section ul li {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .section ul li i {
+      margin-right: 1rem;
+      color: #00ffcc;
+    }
+
+    .section ul li i[aria-hidden="true"] {
+      pointer-events: none;
+    }
+
+    .section p {
+      margin-bottom: 1.2rem;
+      text-align: justify;
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
+
+    .calculator {
+      background: linear-gradient(145deg, #303d4d, #2b3340);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .calculator h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+      color: #00ffcc;
+    }
+
+    .calculator label {
+      font-size: 1rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #ddd;
+    }
+
+    .calculator input {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      background: #1a222e;
+      color: #fff;
+      margin-bottom: 1.2rem;
+      box-shadow: inset 0 0 5px rgba(0, 255, 204, 0.2);
+    }
+
+    .calculator input:focus {
+      outline: none;
+      box-shadow: 0 0 8px #00ffcc;
+    }
+
+    .calculator-result {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      background: #1a1f26;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: inset 0 0 10px #00000033;
+      color: #00ffcc;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    @media (max-width: 500px) {
+      .milestones {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const startTime = new Date("2025-06-05T20:26:00Z").getTime();
+
+      function updateMilestoneCounter() {
+        const now = new Date().getTime();
+        const distance = now - startTime;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((distance / (1000 * 60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
+
+        document.getElementById("daysBlock").textContent = `${days} Days`;
+        document.getElementById("hoursBlock").textContent = `${hours} Hours`;
+        document.getElementById("minutesBlock").textContent = `${minutes} Minutes`;
+        document.getElementById("secondsBlock").textContent = `${seconds} Seconds`;
+      }
+
+      updateMilestoneCounter();
+      setInterval(updateMilestoneCounter, 1000);
+
+      const input = document.getElementById("weeklySpend");
+      const result = document.getElementById("calculatorResult");
+
+      input.addEventListener("input", function () {
+        const weeklySpend = parseFloat(input.value);
+        if (!isNaN(weeklySpend)) {
+          const daily = weeklySpend / 7;
+          const monthly = weeklySpend * 4.345;
+          const annual = weeklySpend * 52;
+
+          const formatter = new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+            minimumFractionDigits: 2
+          });
+
+          result.innerHTML = `
+            <p>Daily Spend: ${formatter.format(daily)}</p>
+            <p>Monthly Spend: ${formatter.format(monthly)}</p>
+            <p>Annual Spend: ${formatter.format(annual)}</p>
+            <p>If you quit now, that’s <strong>${formatter.format(annual)}</strong> back in your pocket every year!</p>
+          `;
+        } else {
+          result.innerHTML = '';
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1><i class="fas fa-lungs" aria-hidden="true"></i> Quit Vaping Journey</h1>
+    <p>Your lungs, your life, your power.</p>
+    <div class="milestones">
+      <div class="milestone-block" id="daysBlock" aria-live="polite"></div>
+      <div class="milestone-block" id="hoursBlock" aria-live="polite"></div>
+      <div class="milestone-block" id="minutesBlock" aria-live="polite"></div>
+      <div class="milestone-block" id="secondsBlock" aria-live="polite"></div>
+    </div>
+  </header>
+
+  <div class="section">
+    <h2>Why I Quit</h2>
+    <ul>
+      <li><i class="fas fa-heartbeat" aria-hidden="true"></i> To improve my heart and lung health</li>
+      <li><i class="fas fa-smog" aria-hidden="true"></i> To avoid harmful chemicals and toxins</li>
+      <li><i class="fas fa-money-bill-wave" aria-hidden="true"></i> To save money</li>
+      <li><i class="fas fa-brain" aria-hidden="true"></i> To regain mental clarity and focus</li>
+      <li><i class="fas fa-wind" aria-hidden="true"></i> To breathe better and smell more</li>
+      <li><i class="fas fa-user-shield" aria-hidden="true"></i> To take back control of my health and habits</li>
+      <li><i class="fas fa-wallet" aria-hidden="true"></i> To avoid financial drain from constant vaping purchases</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Health Improvements</h2>
+    <ul>
+      <li><i class="fas fa-lungs" aria-hidden="true"></i> Breathing has become easier</li>
+      <li><i class="fas fa-sun" aria-hidden="true"></i> Increased energy levels</li>
+      <li><i class="fas fa-tachometer-alt" aria-hidden="true"></i> Enhanced sense of taste and smell</li>
+      <li><i class="fas fa-moon" aria-hidden="true"></i> Better quality sleep</li>
+      <li><i class="fas fa-running" aria-hidden="true"></i> Improved stamina</li>
+    </ul>
+  </div>
+
+  <div class="section calculator">
+    <h3>How Much Are You Spending?</h3>
+    <label for="weeklySpend">Enter your weekly vape spend (£):</label>
+    <input type="number" id="weeklySpend" placeholder="e.g. 25.50" />
+    <div class="calculator-result" id="calculatorResult"></div>
+  </div>
+
+  <div class="section">
+    <h2>Vaping vs Smoking: The Facts</h2>
+    <p>Vaping and smoking both involve inhaling substances that can affect health, but they differ in delivery, composition, and risks. Here’s a breakdown comparing the two and addressing why vaping is sometimes considered worse than smoking, based on available evidence.</p>
+
+    <h3>Mechanism and Substances:</h3>
+    <p><strong>Smoking:</strong> Involves burning tobacco, producing smoke with thousands of chemicals, including tar, carbon monoxide, and known carcinogens like benzene and formaldehyde.</p>
+    <p><strong>Vaping:</strong> Uses an electronic device to heat a liquid (e-liquid) containing nicotine, flavorings, and other chemicals (e.g., propylene glycol, vegetable glycerin) into an aerosol. No combustion occurs, reducing some harmful byproducts.</p>
+
+    <h3>Health Risks:</h3>
+    <p><strong>Smoking:</strong> Well-established cause of lung cancer, heart disease, stroke, and COPD. Contains over 7,000 chemicals, with at least 70 known carcinogens. Secondhand smoke poses risks to non-smokers.</p>
+    <p><strong>Vaping:</strong> Fewer harmful chemicals than cigarette smoke, but not risk-free. Long-term effects are less studied due to vaping’s recent emergence. Associated with lung injuries like EVALI and contains heavy metals and volatile compounds.</p>
+
+    <h3>Nicotine Delivery:</h3>
+    <p>Both deliver addictive nicotine. Vapes can sometimes deliver higher nicotine concentrations than cigarettes, increasing addiction risk, especially with pod-based systems.</p>
+
+    <h3>Regulation and Safety:</h3>
+    <p><strong>Smoking:</strong> Heavily regulated with strong warnings.</p>
+    <p><strong>Vaping:</strong> Less regulated in many places, leading to variable product quality and safety. Illicit products can be dangerous.</p>
+
+    <h3>Why Vaping Might Be Less Harmful:</h3>
+    <p>It eliminates tar and carbon monoxide and reduces toxicants significantly—Public Health England (2015) estimated vaping is 95% less harmful than smoking. It may serve as a harm-reduction tool for smokers.</p>
+
+    <h3>Conclusion:</h3>
+    <p>Vaping may be less harmful for existing smokers but is not risk-free. It presents unique risks, particularly for youth and non-smokers. Full cessation from nicotine remains the healthiest goal.</p>
+  </div>
+
+  <footer>
+    <p>Copyright © 2025 created by <a href="https://itzgee.com" target="_blank">Gee</a><br>
+      Email: <a href="mailto:help@itzgee.com">help@itzgee.com</a></p>
+  </footer>
+</body>
+</html>
